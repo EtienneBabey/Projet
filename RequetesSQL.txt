@@ -56,7 +56,10 @@ where genres = 'Comedy' and tconst in
 where averageRating in
 (SELECT max(averageRating) FROM title_ratings))
 
-13) …………………………………………………….
+--------------/!\--------------
+13) SELECT primaryTitle FROM title_basics
+where genres LIKE '%Animation%'
+limit 10
 
 14) SELECT count(primaryTitle) FROM title_basics
 where titleType = 'movie' and runtimeMinutes > 180
