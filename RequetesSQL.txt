@@ -36,7 +36,13 @@ where tconst in
 (SELECT tconst FROM title_basics
 where primaryTitle = 'Taxi' and startYear = 1998))
 
-10) ………………………………………………………
+--------------/!\--------------
+10) SELECT primaryName FROM name_basics
+where nconst in
+(SELECT nconst FROM title_principals
+where tconst in
+(SELECT tconst FROM title_basics
+where primaryTitle = 'Star Wars: Episode VI - Return of the Jedi' and startYear = 1983))
 
 11) SELECT primaryTitle FROM title_basics
 where tconst in
