@@ -77,7 +77,7 @@ where nconst in
 (SELECT nconst FROM title_principals
 where characters = '["James Bond"]')
 
-SELECT primaryTitle FROM title_basics
+20) SELECT primaryTitle FROM title_basics
 where tconst in
 (SELECT knownForTitles FROM name_titles
 where nconst in
