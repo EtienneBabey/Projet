@@ -1,1 +1,92 @@
-1)
+1) SELECT DISTINCT types FROM title_akas
+
+2) SELECT COUNT(primaryTitle) FROM title_basics
+
+3) SELECT startYear FROM title_basics
+WHERE primaryTitle = 'The Godfather' and titleType = 'movie'
+
+4) SELECT MIN(startYear) FROM title_basics
+WHERE primaryTitle = 'Superman'
+
+5) Select originalTitle from title_basics
+where tconst in
+(Select titleId from title_akas
+where title = 'Les dents de la mer')
+
+6) Select primaryProfession from name_basics
+where primaryName = 'Olivier Nakache'
+
+7) Select DISTINCT(primaryTitle) from title_basics
+where tconst in
+(Select knownForTitles from name_titles
+where nconst in
+(Select nconst from name_basics
+where primaryName = 'Olivier Nakache'))
+
+8) Select primaryTitle from title_basics
+where tconst in
+(Select tconst from title_ratings
+where numVotes in
+(Select max(numVotes) from title_ratings))
+
+9) Select primaryName from name_basics
+where nconst in
+(Select writers from title_writers
+where tconst in
+(Select tconst from title_basics
+where primaryTitle = 'Taxi' and startYear = 1998))
+
+10) ………………………………………………………
+
+11) Select primaryTitle from title_basics
+where tconst in
+(Select tconst from title_ratings
+where averageRating > 9 and numVotes > 10000)
+
+12) Select primaryTitle from title_basics
+where genres = 'Comedy' and tconst in
+(Select tconst from title_ratings
+where averageRating in
+(Select max(averageRating) from title_ratings))
+
+13) …………………………………………………….
+
+14) Select count(primaryTitle) from title_basics
+where titleType = 'movie' and runtimeMinutes > 180
+
+15) Select avg(runtimeMinutes) from title_basics
+where titleType = 'movie'
+
+16) Select primaryTitle from title_basics
+where runtimeMinutes in
+(Select max(runtimeMinutes) from title_basics)
+
+17) Select primaryTitle from title_basics
+order by runtimeMinutes DESC
+limit 5
+
+18) Select primaryTitle from title_basics
+where tconst in
+(Select knownForTitles from name_titles
+where nconst in
+(Select nconst from name_basics
+where primaryName = 'Sean Connery'))
+
+19) Select primaryName from name_basics 
+where nconst in
+(Select nconst from title_principals
+where characters = '["James Bond"]')
+
+Select primaryTitle from title_basics
+where tconst in
+(Select knownForTitles from name_titles
+where nconst in
+(Select nconst from title_principals
+where characters = '["James Bond"]'))
+
+21) Select primaryTitle from title_basics
+where tconst in
+(Select tconst from title_episode
+where parentTconst in
+(Select tconst from title_basics
+where primaryTitle = 'Game of Thrones'))
