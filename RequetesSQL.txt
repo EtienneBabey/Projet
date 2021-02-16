@@ -49,6 +49,7 @@ where tconst in
 (SSELECT tconst FROM title_ratings
 where averageRating > 9 and numVotes > 10000)
 
+--------------/!\--------------
 12) SELECT primaryTitle FROM title_basics
 where genres = 'Comedy' and tconst in
 (SELECT tconst FROM title_ratings
@@ -78,6 +79,8 @@ where nconst in
 (SELECT nconst FROM name_basics
 where primaryName = 'Sean Connery'))
 
+
+--------------/!\--------------
 19) SELECT primaryName FROM name_basics 
 where nconst in
 (SELECT nconst FROM title_principals
