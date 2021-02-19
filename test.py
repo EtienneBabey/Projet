@@ -1,24 +1,53 @@
 import sqlite3
 
-#dic1 = {"Quels sont les différents types de titres dans cette base de données ?": "SELECT DISTINCT types FROM title_akas;"}
-#dic2 = {"Combien y a-t-il de titres dans cette base de données ?": "SELECT COUNT(primaryTitle) FROM title_basics;"}
-#dic3 = {"En quelle année est sortie le film The Godfather ?": "SELECT startYear FROM title_basics WHERE primaryTitle = 'The Godfather' and titleType = 'movie';"}
-#dic4 = {"En quelle année est sortie le premier film Superman ?": "SELECT MIN(startYear) FROM title_basics WHERE primaryTitle = 'Superman';"}
+"""
+for val in dic2.values():
+    print(val)
 
-#for val in dic2.values():
-    #print(val)
+conn = sqlite3.connect('imdb.db')
+c = conn.cursor()
+c.execute(val)
+for row in c:
+    print(row)
+conn.close()
+"""
 
-#conn = sqlite3.connect('imdb.db')
-#c = conn.cursor()
-#c.execute(val)
-#for row in c:
-    #print(row)
-#conn.close()
 
-#def chargerRequ():
+def chercherRequete(nbRequete):
+    
+    d1=dict()
+    
+    for i in range(1, nbRequete+1):
+        
+        d2=dict()
+        question=[]
+        requete=[]
+    
+        numRequ = str(i)
+        chercheRequ = open("requetes/requ_"+numRequ+".txt", "r")
+        lignes = chercheRequ.readlines()
+        
+        #Parcour ligne par ligne le fichier et les récupère séparément sous forme listes.
+        for lignes in lignes:
+            requete += [lignes]
+        question.append(requete[0]), requete.remove(requete[0])
 
-f = open('requetes/requ_01.txt','r')
-requete = f.read()
-print(requete)
-f.close()
+        #Transforme les listes question et requete en chaîne de caractere.
+        question = ''.join(question)
+        requete = ''.join(requete)
+
+        #Ajoute les variables question et requete dans un dico d2 à l'interieur d'un autre dico d1, question étant la clé et requete étant la valeur.
+        d2[question]=requete
+        d1[i]=d2
+        
+    return d1
+        
+        
+print(chercherRequete(2))  
+
+
+
+
+
+
 
