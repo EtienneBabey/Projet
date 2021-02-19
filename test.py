@@ -15,6 +15,10 @@ conn.close()
 
 def chercherRequete(nbRequete):
     
+    assert type(nbRequete) == int,'nbRequete doit être un entier'
+    assert nbRequete > 0,'nbRequete doit être strictement supérieur à 0'
+    assert nbRequete <= 2,'nbRequete doit être inférieur ou égal à 2'
+    
     d1=dict()
     
     for i in range(1, nbRequete+1):
