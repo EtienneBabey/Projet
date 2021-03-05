@@ -1,18 +1,5 @@
 import sqlite3
 
-"""
-for val in dic2.values():
-    print(val)
-
-conn = sqlite3.connect('imdb.db')
-c = conn.cursor()
-c.execute(val)
-for row in c:
-    print(row)
-conn.close()
-"""
-
-
 def chercherRequete(nbRequete):
     
     assert type(nbRequete) == int,'nbRequete doit être un entier'
@@ -44,12 +31,34 @@ def chercherRequete(nbRequete):
         d2[question]=requete
         d1[i]=d2
         
-    return d1
-        
-        
-print(chercherRequete(2))  
+    return d2
 
+def executerRequ(requ):
 
+    dic = chercherRequete(1)
+    dic2 = dic.values() 
+    requete = ''.join(dic2)
+    result=[]      
+
+    conn = sqlite3.connect('imdb.db')
+    c = conn.cursor()
+    c.execute(requete)
+    for row in c:
+        result.append(row)
+    conn.close()
+    
+    return result
+
+def afficher():
+    print(chercherRequete(1).keys())
+    print(chercherRequete(1).values())
+    
+    L=executerRequ(chercherRequete(1))
+    for i in range(len(L)):
+        print(L[i])
+    return
+    
+afficher()
 
 
 
