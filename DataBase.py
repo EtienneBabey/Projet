@@ -1,4 +1,7 @@
 import sqlite3
+import listeRequ
+
+
 
 def chercherRequete(nbRequete):
     
@@ -18,7 +21,7 @@ def chercherRequete(nbRequete):
         chercheRequ = open("requetes/requ_"+numRequ+".txt", "r")
         lignes = chercheRequ.readlines()
         
-        #Parcour ligne par ligne le fichier et les récupère séparément sous forme listes.
+        #Parcour ligne par ligne le fichier et les récupère séparément sous forme de listes.
         for lignes in lignes:
             requete += [lignes]
         question.append(requete[0]), requete.remove(requete[0])
@@ -30,12 +33,16 @@ def chercherRequete(nbRequete):
         #Ajoute les variables question et requete dans un dico d2 à l'interieur d'un autre dico d1, question étant la clé et requete étant la valeur.
         d2[question]=requete
         d1[i]=d2
-        
+      
     return d2
 
-def executerRequ(requ):
+    
+def listeRequete():
+    return listeRequ.liste()
 
-    dic = chercherRequete(1)
+def executerRequ(requ,n):
+
+    dic = chercherRequete(n)
     dic2 = dic.values() 
     requete = ''.join(dic2)
     result=[]      
@@ -49,17 +56,18 @@ def executerRequ(requ):
     
     return result
 
-def afficher():
-    print(chercherRequete(1).keys())
-    print(chercherRequete(1).values())
+def afficher(numRequ):
+    print(chercherRequete(numRequ).keys())
+    print(chercherRequete(numRequ).values())
     
-    L=executerRequ(chercherRequete(1))
+    L=executerRequ(chercherRequete(numRequ),numRequ)
     for i in range(len(L)):
         print(L[i])
     return
     
-afficher()
+numRequ = int(input(""))  
 
+afficher(numRequ)
 
 
 
